@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<openerp>
+    <data>
+        <template id="main_page" name ="mainpage">
+            <script type="text/javascript" src="/IOT_web/static/lib/jquery/jquery.js"></script>
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+            <script src="/IOT_web/static/lib/jquery/lc_switch.js" type="text/javascript"></script>
+            <link rel="stylesheet" href="/IOT_web/static/src/css/lc_switch.css"/>
+            <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css"/>
+            <script type="text/javascript">
+				$(document).ready(function(e) {
+				    $('input').lc_switch();
+				
+				    // triggered each time a field changes status
+				    $('body').delegate('.lcs_check', 'lcs-statuschange', function() {
+				        var status = ($(this).is(':checked')) ? 'checked' : 'unchecked';
+				        console.log('field changed status: '+ status );
+                        
+				    });
+				    
+				    // triggered each time a field is checked
+				    $('body').delegate('.lcs_check', 'lcs-on', function() {
+				      $.ajax({
+                            url: "/status",
+                            method:"POST",
+                            data: {'status':'true','item_id':$(this).data('item_id')}
+                            }).done(function() {
+                            $( this ).addClass( "done" );
+                            });
+				    });
+				    
+			        // triggered each time a is unchecked
+				    $('body').delegate('.lcs_check', 'lcs-off', function() {
+				        console.log('field is unchecked');
+                        $.ajax({
+							url: "/status",
+                            method:"POST",
+							data: {'status':'false','item_id':$(this).data('item_id')}
+							}).done(function() {
+							$( this ).addClass( "done" );
+							});
+				    });
+                });
+	        </script>             
+            <t t-call="IOT_web.content">
+                <form method="post" action="/main" name="name">
+			        <!-- insert the page content here -->
+			        <h1>Form Main</h1>
+			        <p>Device Information</p>
+			        <table style="width:50%; border-spacing:2;" >
+			            <thead>
+			                <tr>
+			                    <th>Device</th>
+			                    <th>Status</th>
+			                </tr>
+			            </thead>
+			            <t t-foreach="res" t-as="item">
+			                <tbody>
+			                    <tr>
+                                    <td><t t-esc="item.get('name')"></t> </td>
+                                    <td><input type="checkbox" t-att-data-item_id="item.get('id')" name="check" class="lcs_check lcs_tt1" checked="checked" /></td>
+			                    </tr>
+                           </tbody>
+			            </t>
+			          </table>
+			     </form>
+			 </t>
+        </template>
+    </data>
+</openerp>

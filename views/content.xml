@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<openerp>
+    <data>
+        <template id="content" name ="contentpage">
+            <html>
+                <head>
+		            <title>IOT_project</title>
+		            <meta name="description" content="website description" />
+		            <meta name="keywords" content="website keywords, website keywords" />
+		            <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+		            <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine&amp;v1" />
+		            <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" />
+		            <link rel="stylesheet" type="text/css" href="/IOT_web/static/src/css/style.css" />
+                </head>
+                <body>
+                    <div id="main">
+				        <div id="header">
+						    <div id="logo">
+						        <h1>IOT<a href="#">_Project</a></h1>
+						        <div class="slogan"><img class="paperclip" src="/IOT_web/static/src/images/IoT.png" alt="paperclip" /></div>
+						    </div>
+						    <div id="menubar">
+						        <ul id="menu">
+							        <!-- put class="current" in the li tag for the selected page - to highlight which page you're on -->
+							        <li><a href="/main">Main</a></li>
+						        <li class="current"><a href="/config">Configuration</a></li>
+						        </ul>
+						    </div>
+						</div>
+						<div id="site_content">
+				            <div id="content">
+                               <t t-raw="0"/>
+                            </div>
+                        </div>	
+                        <div id="footer">
+                            <p>Copyright |<a href="http://www.serpentcs.com/">Serpent Consulting Services</a></p>
+                        </div>	
+                    </div>
+                </body>
+            </html>
+        </template>
+    </data>
+</openerp>
