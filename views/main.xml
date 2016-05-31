@@ -3,68 +3,131 @@
     <data>
         <template id="main_page" name ="mainpage">
             <script type="text/javascript" src="/IOT_web/static/lib/jquery/jquery.js"></script>
+            
+            <!-- Jquery for Switch Yes/NO Toggle Button  -->
+           
             <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
             <script src="/IOT_web/static/lib/jquery/lc_switch.js" type="text/javascript"></script>
             <link rel="stylesheet" href="/IOT_web/static/src/css/lc_switch.css"/>
+           
             <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css"/>
+           
             <script type="text/javascript">
-				$(document).ready(function(e) {
-				    $('input').lc_switch();
-				
-				    // triggered each time a field changes status
-				    $('body').delegate('.lcs_check', 'lcs-statuschange', function() {
-				        var status = ($(this).is(':checked')) ? 'checked' : 'unchecked';
-				        console.log('field changed status: '+ status );
-                        
-				    });
-				    
-				    // triggered each time a field is checked
-				    $('body').delegate('.lcs_check', 'lcs-on', function() {
-				      $.ajax({
+                $(document).ready(function(e) {
+                    $('.lcs_check').lc_switch();
+                    
+                     $( document ).on( "click", "#click", function() {
+                          $('.lcs_check').prop('checked', true).change();
+                     });
+                
+                    $( document ).on( "click", "#unclick", function()
+                    {
+                       $('.lcs_check').prop('checked', false).change();
+                    });
+                    
+                    // triggered each time a field changes status
+                    $('body').delegate('.lcs_check', 'lcs-statuschange', function() {
+                        var status = ($(this).is(':checked')) ? 'checked' : 'unchecked';
+                        console.log('field changed status: '+ status );
+                    });
+                    
+                    // triggered each time a field is checked
+                    $('body').delegate('.lcs_check', 'lcs-on', function() {
+                      $.ajax({
                             url: "/status",
                             method:"POST",
                             data: {'status':'true','item_id':$(this).data('item_id')}
                             }).done(function() {
                             $( this ).addClass( "done" );
                             });
-				    });
-				    
-			        // triggered each time a is unchecked
-				    $('body').delegate('.lcs_check', 'lcs-off', function() {
-				        console.log('field is unchecked');
+                    });
+                    
+                    // triggered each time a is unchecked
+                    $('body').delegate('.lcs_check', 'lcs-off', function() {
+                        console.log('field is unchecked');
                         $.ajax({
-							url: "/status",
+                            url: "/status",
                             method:"POST",
-							data: {'status':'false','item_id':$(this).data('item_id')}
-							}).done(function() {
-							$( this ).addClass( "done" );
-							});
-				    });
+                            data: {'status':'false','item_id':$(this).data('item_id')}
+                            }).done(function() {
+                            $( this ).addClass( "done" );
+                            });
+                     });
                 });
-	        </script>             
+            </script>
+            
+            <style>
+                table {
+                   
+                    border-collapse: collapse;
+                    width: 50%;
+                    border: 2px solid black;
+                    align: center;
+                }
+                
+                th, td {
+                    text-align: center;
+                    padding: 8px;
+                    border: solid 1px #000; 
+                    width: 170px;
+                }
+                
+                tr:nth-child(even)
+                { 
+                   background-color: #f2f2f2
+                }
+                
+                th {
+                    background-color: #444;
+                    color: white;
+                }
+            </style>
             <t t-call="IOT_web.content">
-                <form method="post" action="/main" name="name">
-			        <!-- insert the page content here -->
-			        <h1>Form Main</h1>
-			        <p>Device Information</p>
-			        <table style="width:50%; border-spacing:2;" >
-			            <thead>
-			                <tr>
-			                    <th>Device</th>
-			                    <th>Status</th>
-			                </tr>
-			            </thead>
-			            <t t-foreach="res" t-as="item">
-			                <tbody>
-			                    <tr>
-                                    <td><t t-esc="item.get('name')"></t> </td>
-                                    <td><input type="checkbox" t-att-data-item_id="item.get('id')" name="check" class="lcs_check lcs_tt1" checked="checked" /></td>
-			                    </tr>
-                           </tbody>
-			            </t>
-			          </table>
-			     </form>
-			 </t>
+                <div id="header">
+                    <div id="logo">
+                        <h1>IOT<a href="#">_Project</a></h1>
+                        <div class="slogan"><img class="paperclip" src="/IOT_web/static/src/images/IoT.png" /></div>
+                    </div>
+                    <div id="menubar">
+                        <ul id="menu">
+                            <!-- put class="current" in the li tag for the selected page - to highlight which page you're on -->
+                            <li class="current"><a href="/main">Main</a></li>
+                            <li><a href="/config">Configuration</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="site_content">
+                    <div id="content">
+                        <form method="post" action="/main" name="myform">
+                            <div class="form_settings">
+                                <h1> Main</h1>
+                                <table>
+                                    <tr>
+                                       <th>Name</th>
+                                       <th>Status</th>
+                                   </tr>
+                                   <t t-foreach="res" t-as="item">
+                                       <tbody>
+                                           <tr>
+                                               <td><t t-esc="item.name"></t></td>
+                                               <td>
+                                                   <input t-if="item.status" type="checkbox" t-att-data-item_id="item.id" name="check_list" class="lcs_check" checked="checked " />
+                                                   <input t-if="not item.status" type="checkbox" t-att-data-item_id="item.id" name="check_list" class="lcs_check" />
+                                               </td>
+                                           <!--   <td><t t-esc="item.channel"></t> </td> -->
+                                           </tr>
+                                       </tbody>
+                                   </t>
+                                </table>
+                                <p style="padding-top: 15px"> 
+                                    <input class="submit" type="submit" id="click" value="Check All" /><br/><br/> 
+                                    <input class="submit" type="submit" id="unclick" value="UnCheck All" />
+                                </p>
+                          </div>
+                        </form>
+                    </div>
+                </div>
+            </t>
         </template>
     </data>
 </openerp>

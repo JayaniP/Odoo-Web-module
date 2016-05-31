@@ -6,26 +6,28 @@ html
   padding: 0;}
 
 body
-{ font: normal .80em 'trebuchet ms', arial, sans-serif;
-  background: #F7F7F7 url(pattern.png) fixed;
+{ font: normal .80em Times new Roman, sans-serif;
+  background: #F7F7F7;
   color: #555;}
 
 p
 { padding: 0 0 20px 0;
   line-height: 1.5em;
-  font-size: 107%;}
+  font-size: 130%;
+}
+  
 
 img
 { border: 0;}
 
 h1, h2, h3, h4, h5, h6 
-{ font: normal 250% 'Yanone Kaffeesatz', arial, sans-serif;
+{ font: normal 250% Times new Roman, sans-serif;
   color: #444;
   margin: 0 0 15px 0;
   padding: 5px 0 5px 0;}
 
 h2
-{ font: normal 170% 'Yanone Kaffeesatz', arial, sans-serif;
+{ font: normal 170% Times new Roman, sans-serif;
   color: #F14E23;  
   margin: 0;
   padding: 0 0 8px 0;}
@@ -38,12 +40,12 @@ h3
 h4, h5, h6
 { margin: 0;
   padding: 0 0 5px 0;
-  font: normal 100% arial, sans-serif;
+  font: normal 100% Times new Roman, sans-serif;
   color: #F14E23;
   line-height: 1em;}
 
 h5, h6
-{ font: italic 95% arial, sans-serif;
+{ font: italic 95% Times new Roman, sans-serif;
   color: #888;
   padding-bottom: 15px;}
 
@@ -107,7 +109,7 @@ ol li
   padding: 0 0 0px 10px;}
 
 #logo h1
-{ font: normal 350% 'Yanone Kaffeesatz', arial, sans-serif;
+{ font: normal 350% Times new Roman, sans-serif;
   padding: 5px 0 0 17px;
   color: #555;
   float: left;}
@@ -124,7 +126,7 @@ ol li
 { float: right; 
   padding-right: 25px;
   text-align: right; 
-  font: 500% 'tangerine', arial; 
+  font: 500% Times new Roman; 
   color: #111;}
 
 #menubar
@@ -145,7 +147,7 @@ ul#menu li
   background: transparent;}
 
 ul#menu li a
-{ font: normal 170% 'Yanone Kaffeesatz', sans-serif;
+{ font: normal 170% Times new Roman, sans-serif;
   text-decoration: none;
   color: #444;
   display: block; 
@@ -187,7 +189,7 @@ ul#menu li a:hover
   background: #FBFBFB;
   border: 1px solid #eee;
   padding: 0 15px 15px 15px;
-}
+  }
 
 .sidebar h3, .content h1
 { padding: 10px 15px;
@@ -204,17 +206,19 @@ ul#menu li a:hover
   margin: -27px 0 -60px -30px;}
 
 #content
-{ text-align: left;
+{ text-align: center;
   width: 630px;
   padding: 25px 0 5px 25px;
   margin: 0;}
 
 #content ul
-{ margin: 2px 0 22px 0px;}
+{ 
+	margin: 2px 0 22px 0px;
+}
 
 #content ul li
 { list-style-type: none;
-  background: url(bullet.png) no-repeat;
+  background: url("/IOT_web/static/src/images/bullet.png") no-repeat;
   margin: 0 0 6px 0; 
   padding: 0 0 4px 25px;
   line-height: 1.5em;}
@@ -222,7 +226,7 @@ ul#menu li a:hover
 #footer
 { clear: both;
   width: 100%;
-  font: normal 150% 'yanone kaffeesatz',  arial, sans-serif;
+  font: normal 150% Times new Roman, sans-serif;
   height: 85px;
   padding: 20px 0 5px 0;
   text-align: center; 
@@ -258,12 +262,12 @@ ul#menu li a:hover
   
 .form_settings input, .form_settings textarea
 { width: 252px; 
-  font: 100% 'trebuchet ms', arial;
+  font: 100% Times new Roman;
   border: 0;
   border: 1px solid #eee;
   padding: 5px 10px;
   background: #fff;
- }
+  color: #444;}
   
 .form_settings .submit
 { border: 0; 
@@ -274,10 +278,10 @@ ul#menu li a:hover
   border: 1px solid #ddd;
   padding: 5px 15px;
   background: #fff;
-  font: normal 140% 'Yanone Kaffeesatz', sans-serif;}
+  font: normal 140% Times new Roman , sans-serif;}
 
 .form_settings textarea, .form_settings select
-{ font: 100% 'trebuchet ms', arial; 
+{ font: 100% Times new Roman; 
   border: 1px solid #eee;
   padding: 5px 10px;
   background: #fff;
@@ -310,22 +314,20 @@ ul#menu li a:hover
   float: right;
   cursor: pointer;
   margin: 0;
-  font: normal 140% 'Yanone Kaffeesatz', sans-serif;}
+  font: normal 140% Times new Roman, sans-serif;}
  
 table
-{ margin: 10px 0 30px 0;
-  border: 2px solid #eee;
+{ 
+	margin: 10px 0 30px 0;
 }
 
 table tr th, table tr td
 { background: #F5F5F5;
   color: #111;
   padding: 7px 4px;
-  text-align: center;
-  border: 2px solid #eee;
-}
+  text-align: center;}
   
 table tr td
 { background: #FBFBFB;
   color: #111;
-  border-top: 2px solid #eee;}
+  border-top: 1px solid #FFF;}
