@@ -1,1 +1,1 @@
-import maindata
+from . import maindata
