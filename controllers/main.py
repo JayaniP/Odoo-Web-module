@@ -19,21 +19,16 @@ class web_demo(http.Controller):
     @http.route(['/status'], type='http', auth="public", methods=['POST'], website = True)
     def check_status(self, **kwargs):
         main_iot_obj = request.env['main.iot']
-        print "***Status***",kwargs
         res = main_iot_obj.search([('id', '=', kwargs['item_id'])])
 #        res1 = iot_main_obj.search_read([], [ 'name','channel'])
         for x in res:
-            print x.status
-            pin = x.channel 
+           pin = x.channel 
 #          pro = iot_main_obj.search([],['name','channel'])
         if kwargs['status'] == 'true':
             sdata = res.write({'status' : True })
 #            seri.write(pin,'1')
-            
-            print "+++++++++++",res
         else:
             sdata = res.write({'status' : False })
-            print "+++++++++++",res
 #            seri.write(pin,'0')
 #            print pro
         return {}
@@ -41,10 +36,7 @@ class web_demo(http.Controller):
     @http.route(['/statusval'], type='http', auth="public", methods=['POST'], website = True)
     def status(self, **kwargs):
         main_iot_obj = request.env['main.iot']
-        print "***Status***",kwargs
         res = main_iot_obj.search_read([], ['name', 'channel'])
-        print "***********",res
-       
         return {}
         
     @http.route(['/config'], type = 'http', auth = 'public', website = True)
@@ -55,7 +47,6 @@ class web_demo(http.Controller):
         for x in r:
             result.append(x.channel)
         val = main_iot_obj.search_read([], ['name', 'channel'])
-        print "******Val****",val
         return http.request.render('IOT_web.config_page', {'res': result, 'key': val})
 
     @http.route(['/delete_record'], type='http', auth="public", methods=['POST','GET'], website = True)
@@ -66,9 +57,7 @@ class web_demo(http.Controller):
 
     @http.route(['/create_record'], type='http', auth="public", methods=['POST'], website = True)
     def create_record(self, **kwargs):
-        print '&&&&&&&&&&&&&&',kwargs
         main_iot_obj = request.env['main.iot']
         res = main_iot_obj.create(kwargs)
-        print '@@@@@@@@@@@',res
-        
+
 

@@ -1,2 +1,2 @@
 # -*- coding: utf-8 -*-
-import controllers
+import Odoo_Web_module.controllers

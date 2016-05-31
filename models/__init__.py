@@ -1,1 +1,1 @@
-import maindata
+import Odoo_Web_module.models.maindata
