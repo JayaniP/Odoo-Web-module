@@ -9,5 +9,5 @@
         'views/main.xml',
         'views/content.xml',
         'views/config.xml'
-         ]
+        ]
 }
