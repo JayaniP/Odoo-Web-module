@@ -1,4 +1,4 @@
-#__openerp__.py
+# -*- coding: utf-8 -*-
 {
     'name': "Web Module Example",
     'description': "Basic example of a (future) web module",
