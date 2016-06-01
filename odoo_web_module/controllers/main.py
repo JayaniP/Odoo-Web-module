@@ -5,7 +5,8 @@ from openerp.http import request
 
 class web_demo(http.Controller):
 
-    @http.route(['/main'], type='http', auth='public', website=True)
+    @http.route(['/main'], type='http', auth='public',
+                website=True)
     def mainpage(self, **kwargs):
         main_iot_obj = request.env['main.iot'].search([])
 #        if not iot_main_obj:
@@ -13,7 +14,8 @@ class web_demo(http.Controller):
 #            print "***********",res
         return http.request.render('IOT_web.main_page', {'res': main_iot_obj})
 
-    @http.route(['/status'], type='http', auth="public", methods=['POST'], website=True)
+    @http.route(['/status'], type='http', auth="public",
+                methods=['POST'], website=True)
     def check_status(self, **kwargs):
         main_iot_obj = request.env['main.iot']
         res = main_iot_obj.search([('id', '=', kwargs['item_id'])])
@@ -30,13 +32,15 @@ class web_demo(http.Controller):
 #            print pro
         return {}
 
-    @http.route(['/statusval'], type='http', auth='public', methods=['POST'], website=True)
+    @http.route(['/statusval'], type='http', auth='public',
+                methods=['POST'], website=True)
     def status(self, **kwargs):
         main_iot_obj = request.env['main.iot']
         main_iot_obj.search_read([], ['name', 'channel'])
         return {}
 
-    @http.route(['/config'], type='http', auth='public', website=True)
+    @http.route(['/config'], type='http', auth='public',
+                website=True)
     def configpage(self, **kwargs):
         main_iot_obj = request.env['main.iot']
         r = main_iot_obj.search([])
@@ -44,9 +48,11 @@ class web_demo(http.Controller):
         for x in r:
             result.append(x.channel)
         val = main_iot_obj.search_read([], ['name', 'channel'])
-        return http.request.render('IOT_web.config_page', {'res': result, 'key': val})
+        return http.request.render('IOT_web.config_page',
+                                   {'res': result, 'key': val})
 
-    @http.route(['/delete_record'], type='http', auth='public', methods=['POST', 'GET'], website=True)
+    @http.route(['/delete_record'], type='http', auth='public',
+                methods=['POST', 'GET'], website=True)
     def delete_record(self, **kwargs):
         main_iot_obj = request.env['main.iot']
         res = main_iot_obj.sudo().browse(int(kwargs['item_id']))
