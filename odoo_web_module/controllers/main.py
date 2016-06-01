@@ -9,9 +9,9 @@ class web_demo(http.Controller):
                 website=True)
     def mainpage(self, **kwargs):
         main_iot_obj = request.env['main.iot'].search([])
-#        if not iot_main_obj:
-#            res = iot_main_obj.search_read([], ['name', 'channel'])
-#            print "***********",res
+#       if not iot_main_obj:
+#           res = iot_main_obj.search_read([], ['name', 'channel'])
+#           print "***********",res
         return http.request.render('IOT_web.main_page', {'res': main_iot_obj})
 
     @http.route(['/status'], type='http', auth="public",
@@ -19,10 +19,10 @@ class web_demo(http.Controller):
     def check_status(self, **kwargs):
         main_iot_obj = request.env['main.iot']
         res = main_iot_obj.search([('id', '=', kwargs['item_id'])])
-#        res1 = iot_main_obj.search_read([], [ 'name','channel'])
-      #  for x in res:
-      #      x.channel
-#          pro = iot_main_obj.search([],['name','channel'])
+#       res1 = iot_main_obj.search_read([], [ 'name','channel'])
+#       for x in res:
+#           x.channel
+#           pro = iot_main_obj.search([],['name','channel'])
         if kwargs['status'] == 'true':
             res.write({'status': True})
 #            seri.write(pin,'1')
