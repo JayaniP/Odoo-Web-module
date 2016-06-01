@@ -20,8 +20,8 @@ class web_demo(http.Controller):
         main_iot_obj = request.env['main.iot']
         res = main_iot_obj.search([('id', '=', kwargs['item_id'])])
 #        res1 = iot_main_obj.search_read([], [ 'name','channel'])
-        for x in res:
-            x.channel
+      #  for x in res:
+      #      x.channel
 #          pro = iot_main_obj.search([],['name','channel'])
         if kwargs['status'] == 'true':
             res.write({'status': True})
